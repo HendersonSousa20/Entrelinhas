@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Entrelinhas | Psicologia &amp; Presença</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Inter:wght@200;300;400;500&amp;display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --color-bg: #F5F2ED;
+        --color-text: #1C1C1C;
+      }
+
+      body {
+        background-color: var(--color-bg);
+        color: var(--color-text);
+        font-family: 'Inter', sans-serif;
+        overflow-x: hidden;
+      }
+
+      .serif {
+        font-family: 'Instrument Serif', serif;
+      }
+
+      .noise::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.03;
+        pointer-events: none;
+        z-index: 50;
+
+      }
+
+      .breath-element {
+        animation: breath 10s ease-in-out infinite;
+        will-change: transform, opacity;
+      }
+
+      @keyframes breath {
+
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 0.5;
+        }
+
+        50% {
+          transform: scale(1.1);
+          opacity: 0.7;
+        }
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Estilo do Modal */
+      #article-modal {
+        backdrop-filter: blur(8px);
+        transition: all 0.4s ease;
+      }
+
+      .modal-content-area::-webkit-scrollbar {
+        width: 4px;
+      }
+
+      .modal-content-area::-webkit-scrollbar-thumb {
+        background: #d6d3d1;
+        border-radius: 10px;
+      }
+    </style>
+    <script type="text/javascript" src="./index.js" defer=""></script>
+    <link rel="stylesheet" href="./index.css">
+  </head>
+
+  <body class="noise">
+
+    <nav class="fixed top-0 w-full z-[60] px-6 py-6 md:px-12 md:py-8 flex justify-between items-center mix-blend-difference text-white">
+      <div class="text-xs md:text-sm tracking-[0.4em] font-light italic serif">Entrelinhas</div>
+
+      <div class="hidden md:flex gap-10 text-[10px] uppercase tracking-[0.2em] font-light">
+        <a href="#proposta" class="hover:opacity-50 transition">Processo</a>
+        <a href="#atuacao" class="hover:opacity-50 transition">Atuação</a>
+        <a href="#journal" class="hover:opacity-50 transition">Journal</a>
+        <a href="#agendar" class="border-b border-white/30 pb-1">Contato</a>
+      </div>
+
+      <button onclick="toggleMenu()" class="md:hidden flex flex-col gap-1.5 z-[70] p-2" id="menu-btn">
+        <span class="w-6 h-[1px] bg-white transition-all duration-500" id="line1"></span>
+        <span class="w-6 h-[1px] bg-white transition-all duration-500" id="line2"></span>
+      </button>
+    </nav>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-stone-900/90 backdrop-blur-xl z-[55] flex flex-col justify-center items-center gap-8 opacity-0 pointer-events-none transition-all duration-700">
+      <a href="#proposta" onclick="toggleMenu()" class="serif text-4xl italic text-white/80 hover:text-white transition-all">Processo</a>
+      <a href="#atuacao" onclick="toggleMenu()" class="serif text-4xl italic text-white/80 hover:text-white transition-all">Atuação</a>
+      <a href="#journal" onclick="toggleMenu()" class="serif text-4xl italic text-white/80 hover:text-white transition-all">Journal</a>
+      <a href="#sobre" onclick="toggleMenu()" class="serif text-4xl italic text-white/80 hover:text-white transition-all">Sobre</a>
+      <a href="#agendar" onclick="toggleMenu()" class="mt-8 px-10 py-4 border border-white/20 rounded-full text-[10px] uppercase tracking-[0.3em] text-white">Contato</a>
+    </div>
+
+    <section class="relative min-h-[90vh] md:min-h-screen flex flex-col justify-center items-center px-6 text-center">
+      <div class="absolute w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-[#E9E4DB] rounded-full blur-[80px] md:blur-[120px] -z-10 breath-element"></div>
+      <div class="max-w-5xl">
+        <span class="text-[9px] md:text-[10px] uppercase tracking-[0.6em] text-gray-400 mb-6 block reveal active">Espaço de Escuta e Elaboração</span>
+        <h1 class="serif text-5xl md:text-[110px] leading-[1] md:leading-[0.85] mb-8 md:mb-12 reveal active">
+          O que você sente também <br class="hidden md:block"> <span class="italic font-light text-gray-600">merece linguagem.</span>
+        </h1>
+        <p class="text-base md:text-xl font-light text-gray-500 max-w-2xl mx-auto leading-relaxed mb-12 reveal active">
+          Uma clínica desenhada para transformar o transbordo subjetivo em clareza e autonomia.
+        </p>
+        <button onclick="document.getElementById('checkin').scrollIntoView()" class="reveal active bg-[#1A1A1A] text-[#F9F7F2] px-10 py-5 rounded-full text-[9px] md:text-[10px] uppercase tracking-widest active:scale-95 transition-all">
+          Iniciar Pausa
+        </button>
+      </div>
+    </section>
+
+    <section id="proposta" class="py-24 md:py-40 px-6 max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-24 items-center">
+        <div class="reveal">
+          <h2 class="serif text-4xl md:text-6xl leading-tight mb-8">A pressa é o ruído <br><span class="italic text-gray-400">que nos desconecta.</span></h2>
+          <p class="text-gray-500 font-light text-base leading-loose">
+            O <strong>Entrelinhas</strong> propõe um retorno ao tempo humano. Aqui, trabalhamos com o contorno emocional: a capacidade de dar nome às angústias para que elas deixem de nos dominar.
+          </p>
+        </div>
+        <div class="reveal space-y-8 border-l border-stone-200 pl-8 md:pl-16">
+          <h3 class="text-xs uppercase tracking-widest font-bold">Onde a terapia acontece</h3>
+          <p class="text-gray-500 font-light text-sm leading-relaxed">
+            Não oferecemos respostas prontas, mas as perguntas certas. Nosso processo foca na <strong> individuação</strong>, ajudando você a separar suas vontades das expectativas do mundo.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="atuacao" class="py-24 bg-white px-6">
+      <div class="max-w-7xl mx-auto">
+        <div class="mb-20 reveal text-center">
+          <span class="text-[9px] uppercase tracking-widest text-gray-400 block mb-4">Especialidades</span>
+          <h2 class="serif text-4xl md:text-6xl italic">Cuidado com propósito.</h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-12 text-center md:text-left">
+          <div class="reveal">
+            <h4 class="serif text-2xl mb-4 italic">Ansiedade &amp; Tempo</h4>
+            <p class="text-xs font-light text-gray-500 leading-relaxed">Tratamos a ansiedade como um conflito entre o seu ritmo interno e a pressa do mundo.</p>
+          </div>
+          <div class="reveal">
+            <h4 class="serif text-2xl mb-4 italic">Burnout &amp; Carreira</h4>
+            <p class="text-xs font-light text-gray-500 leading-relaxed">Redefinimos a relação com o trabalho sem que ele consuma sua identidade.</p>
+          </div>
+          <div class="reveal">
+            <h4 class="serif text-2xl mb-4 italic">Identidade</h4>
+            <p class="text-xs font-light text-gray-500 leading-relaxed">A investigação profunda de quem se é por trás das máscaras sociais.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="journal" class="py-24 md:py-40 px-6 bg-[#E9E4DB]/20">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex justify-between items-end mb-20 border-b border-stone-200 pb-10">
+          <div class="reveal">
+            <h2 class="serif text-4xl md:text-6xl italic">Journal</h2>
+          </div>
+          <div class="reveal">
+            <span class="text-[10px] uppercase tracking-[0.4em] text-gray-400">Ensaios e Reflexões</span>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-12 md:gap-16 lg:gap-20">
+          <article onclick="openArticle(1)" class="reveal group cursor-pointer">
+            <div class="overflow-hidden mb-8 bg-stone-200 aspect-[3/4] rounded-lg relative shadow-inner">
+              <img src="https://images.unsplash.com/photo-1588325710623-ffaf25d67aa1?q=80&amp;w=687&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Céu em tons de areia com nuvens suaves, evocando a passagem do tempo e a calma." class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2000ms] ease-out opacity-90" loading="lazy">
+              <div class="absolute inset-0 bg-stone-900 opacity-0 group-hover:opacity-20 transition-opacity duration-1000"></div>
+            </div>
+            <span class="text-[9px] uppercase tracking-widest text-stone-400 block mb-3 italic font-medium">Ensaio 01 — O Tempo</span>
+            <h3 class="serif text-3xl mb-5 group-hover:italic transition-all leading-tight">A ditadura da pressa e o sequestro do agora.</h3>
+            <p class="text-xs text-gray-500 font-light leading-relaxed mb-6">Por que sentimos que estamos sempre atrasados para nossa própria vida?</p>
+            <span class="text-[9px] uppercase tracking-widest border-b border-stone-300 pb-1">Ler Reflexão</span>
+          </article>
+
+          <article onclick="openArticle(2)" class="reveal group cursor-pointer" style="transition-delay: 0.1s;">
+            <div class="overflow-hidden mb-8 bg-stone-200 aspect-[3/4] rounded-lg relative shadow-inner">
+              <img src="https://images.unsplash.com/photo-1626811156101-b70f44f9c6b9?q=80&amp;w=688&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Foco em um detalhe de tecido de linho rústico em tom bege, representando a textura e a linguagem do corpo." class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2000ms] ease-out opacity-90" loading="lazy">
+              <div class="absolute inset-0 bg-stone-900 opacity-0 group-hover:opacity-20 transition-opacity duration-1000"></div>
+            </div>
+            <span class="text-[9px] uppercase tracking-widest text-stone-400 block mb-3 italic font-medium">Ensaio 02 — O Silêncio</span>
+            <h3 class="serif text-3xl mb-5 group-hover:italic transition-all leading-tight">O que as palavras não dizem, o corpo grita.</h3>
+            <p class="text-xs text-gray-500 font-light leading-relaxed mb-6">A psicossomática e a arte de ouvir o que os sintomas tentam nos contar.</p>
+            <span class="text-[9px] uppercase tracking-widest border-b border-stone-300 pb-1">Ler Reflexão</span>
+          </article>
+
+          <article onclick="openArticle(3)" class="reveal group cursor-pointer" style="transition-delay: 0.2s;">
+            <div class="overflow-hidden mb-8 bg-stone-200 aspect-[3/4] rounded-lg relative shadow-inner">
+              <img src="https://images.unsplash.com/photo-1444312645910-ffa973656eba?q=80&amp;w=687&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Forma escultural de pedra lisa e orgânica em tom creme, evocando a busca pela essência e individuação." class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2000ms] ease-out opacity-90" loading="lazy">
+              <div class="absolute inset-0 bg-stone-900 opacity-0 group-hover:opacity-20 transition-opacity duration-1000"></div>
+            </div>
+            <span class="text-[9px] uppercase tracking-widest text-stone-400 block mb-3 italic font-medium">Ensaio 03 — A Máscara</span>
+            <h3 class="serif text-3xl mb-5 group-hover:italic transition-all leading-tight">Quem é você quando ninguém está olhando?</h3>
+            <p class="text-xs text-gray-500 font-light leading-relaxed mb-6">O processo de individuação e a coragem de ser quem você realmente é.</p>
+            <span class="text-[9px] uppercase tracking-widest border-b border-stone-300 pb-1">Ler Reflexão</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="checkin" class="py-20 md:py-32 px-6">
+      <div class="max-w-4xl mx-auto text-center reveal">
+        <h2 class="serif text-3xl md:text-5xl mb-12 italic">Como está seu clima interno?</h2>
+        <div class="grid grid-cols-2 md:flex md:justify-center gap-4 mb-12">
+          <button onclick="updateState('Ruído', 'O excesso de estímulos gera estática. A terapia ajuda a filtrar.')" class="py-4 px-6 border border-stone-300 rounded-full text-[9px] uppercase tracking-widest hover:bg-black hover:text-white transition">Ruído</button>
+          <button onclick="updateState('Pressa', 'A pressa é a tentativa de fugir do agora. O que acontece se parar?')" class="py-4 px-6 border border-stone-300 rounded-full text-[9px] uppercase tracking-widest hover:bg-black hover:text-white transition">Pressa</button>
+          <button onclick="updateState('Nuvem', 'Confusão mental é nevoeiro. Espere a luz mudar gradualmente.')" class="py-4 px-6 border border-stone-300 rounded-full text-[9px] uppercase tracking-widest hover:bg-black hover:text-white transition">Nuvem</button>
+          <button onclick="updateState('Vazio', 'O vazio não é falta, é espaço para o novo florescer.')" class="py-4 px-6 border border-stone-300 rounded-full text-[9px] uppercase tracking-widest hover:bg-black hover:text-white transition">Vazio</button>
+        </div>
+        <div id="state-result" class="min-h-[50px] opacity-0 transition-opacity duration-500">
+          <p id="state-desc" class="serif text-xl md:text-2xl italic text-stone-500 font-light"></p>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="sobre" class="py-24 md:py-40 px-6 max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-20 items-center">
+        <div class="reveal">
+          <div class="aspect-[4/5] bg-stone-200 rounded-2xl overflow-hidden grayscale hover:grayscale-0 transition-all duration-1000 shadow-2xl">
+            <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&amp;w=600" alt="Psicólogo" class="w-full h-full object-cover">
+          </div>
+        </div>
+        <div class="reveal">
+          <span class="text-[10px] uppercase tracking-widest text-stone-400 mb-6 block">A Presença por trás da Escuta</span>
+          <h2 class="serif text-4xl md:text-6xl mb-8 italic text-stone-800">Cuidar é um ato <br> de coragem técnica.</h2>
+          <p class="text-gray-500 font-light leading-loose mb-6">
+            Sou psicólogo clínico (CRP 11/XXXXX) com foco em fenomenologia existencial. Minha prática no <strong>Entrelinhas</strong> em Fortaleza nasceu da necessidade de oferecer um espaço onde o tempo não é medido pelo relógio, mas pelo significado.
+          </p>
+          <p class="text-gray-500 font-light leading-loose">
+            Especialista em ansiedade contemporânea e transições de carreira, acredito que a tecnologia deve ser a moldura, e o encontro humano, a obra de arte.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 bg-white px-6">
+      <div class="max-w-4xl mx-auto">
+        <h3 class="serif text-4xl text-center mb-16 italic">Dúvidas comuns</h3>
+        <div class="space-y-8">
+          <div class="border-b border-stone-100 pb-6 reveal">
+            <h4 class="text-xs uppercase tracking-widest font-bold mb-4">Como é a primeira sessão?</h4>
+            <p class="text-sm text-gray-500 font-light leading-relaxed">É um momento de reconhecimento mútuo. Você traz suas urgências e eu apresento como minha escuta pode te ajudar a dar contorno a elas.</p>
+          </div>
+          <div class="border-b border-stone-100 pb-6 reveal" style="transition-delay: 0.1s;">
+            <h4 class="text-xs uppercase tracking-widest font-bold mb-4">Atende por plano de saúde?</h4>
+            <p class="text-sm text-gray-500 font-light leading-relaxed">Trabalhamos no modelo particular e via <strong>reembolso</strong>. Fornecemos toda a documentação necessária para que você receba o valor de volta do seu convênio.</p>
+          </div>
+          <div class="border-b border-stone-100 pb-6 reveal" style="transition-delay: 0.2s;">
+            <h4 class="text-xs uppercase tracking-widest font-bold mb-4">As sessões podem ser online?</h4>
+            <p class="text-sm text-gray-500 font-light leading-relaxed">Sim. Utilizamos plataformas criptografadas que garantem o sigilo absoluto, permitindo que o acolhimento aconteça onde você se sentir mais seguro.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="agendar" class="py-32 bg-[#1A1A1A] text-white px-6 text-center">
+      <div class="max-w-3xl mx-auto reveal">
+        <h2 class="serif text-5xl md:text-7xl mb-12">Vamos iniciar <br><span class="italic text-gray-400 text-6xl md:text-[80px]">essa conversa?</span></h2>
+        <a href="https://wa.me/5585999999999" target="_blank" class="inline-block bg-white text-black px-12 py-5 rounded-full text-[10px] uppercase tracking-widest active:scale-95 transition-transform">
+          Falar com o Especialista
+        </a>
+        <p class="mt-12 text-[9px] uppercase tracking-[0.4em] text-stone-500">Fortaleza, CE • Online • CRP 11/XXXXX</p>
+      </div>
+    </section>
+
+
+    <div id="article-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4">
+      <div onclick="closeModal()" class="absolute inset-0 bg-stone-900/40 backdrop-blur-sm"></div>
+      <div class="relative bg-[#F5F2ED] w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-xl shadow-2xl transition-all modal-content-area">
+        <button onclick="closeModal()" class="sticky top-6 float-right mr-6 text-[9px] uppercase tracking-widest text-stone-400 hover:text-black z-20 bg-[#F5F2ED] px-4 py-2 rounded-full border border-stone-200">Fechar (Esc)</button>
+        <div class="p-8 md:p-20 clear-both">
+          <span id="modal-tag" class="text-[9px] uppercase tracking-[0.4em] text-stone-400 mb-6 block italic"></span>
+          <h2 id="modal-title" class="serif text-4xl md:text-6xl italic mb-12 leading-tight"></h2>
+          <div id="modal-content" class="text-gray-600 font-light text-base md:text-lg leading-loose space-y-6"></div>
+          <div class="mt-20 pt-12 border-t border-stone-200 text-center">
+            <button onclick="closeModal(); document.getElementById('agendar').scrollIntoView();" class="bg-black text-white px-10 py-4 rounded-full text-[9px] uppercase tracking-widest">Agendar Sessão</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let isMenuOpen = false;
+
+      function toggleMenu() {
+        const menu = document.getElementById('mobile-menu');
+        const btn = document.getElementById('menu-btn');
+        const l1 = document.getElementById('line1');
+        const l2 = document.getElementById('line2');
+
+        isMenuOpen = !isMenuOpen;
+
+        if (isMenuOpen) {
+          menu.classList.remove('opacity-0', 'pointer-events-none');
+          menu.classList.add('opacity-100', 'pointer-events-auto');
+          // Animação para o X
+          l1.style.transform = "translateY(4px) rotate(45deg)";
+          l2.style.transform = "translateY(-3px) rotate(-45deg)";
+          document.body.style.overflow = 'hidden'; // Trava o scroll
+        } else {
+          menu.classList.add('opacity-0', 'pointer-events-none');
+          menu.classList.remove('opacity-100', 'pointer-events-auto');
+          // Volta para as duas linhas
+          l1.style.transform = "translateY(0) rotate(0)";
+          l2.style.transform = "translateY(0) rotate(0)";
+          document.body.style.overflow = 'auto'; // Libera o scroll
+        }
+      }
+      // Conteúdo dos artigos
+      const articles = {
+        1: {
+          tag: "Ensaio 01 — O Tempo",
+          title: "A ditadura da pressa e o sequestro do agora.",
+          content: `<p>Vivemos sob a ilusão de que a vida está sempre um passo à frente, escondida no próximo e-mail ou meta. Essa pressa é uma forma de evitar o encontro com o vazio.</p><p>Na clínica, propomos que a saúde mental começa quando o tempo interno recupera seu trono. <strong>Reflexão:</strong> Onde seus pés estão enquanto sua mente corre?</p>`
+        },
+        2: {
+          tag: "Ensaio 02 — O Silêncio",
+          title: "O que as palavras não dizem, o corpo grita.",
+          content: `<p>O sintoma é um mensageiro. Aquela gastrite ou insônia são tentativas do corpo de comunicar um conflito que a boca esqueceu. A terapia traduz essa linguagem.</p><p><strong>Reflexão:</strong> Se sua dor pudesse falar uma frase hoje, qual seria?</p>`
+        },
+        3: {
+          tag: "Ensaio 03 — A Máscara",
+          title: "Quem é você quando ninguém está olhando?",
+          content: `<p>A construção da identidade é um desaprendizado. É identificar as máscaras de sobrevivência que você usou até aqui e decidir quais delas ainda servem.</p><p><strong>Reflexão:</strong> Quantas vezes você disse 'sim' para os outros e 'no' para si hoje?</p>`
+        }
+      };
+
+      function openArticle(id) {
+        const art = articles[id];
+        document.getElementById('modal-tag').innerText = art.tag;
+        document.getElementById('modal-title').innerText = art.title;
+        document.getElementById('modal-content').innerHTML = art.content;
+        document.getElementById('article-modal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        document.getElementById('article-modal').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }
+
+      function updateState(title, desc) {
+        const el = document.getElementById('state-result');
+        el.style.opacity = 0;
+        setTimeout(() => {
+          document.getElementById('state-desc').innerText = desc;
+          el.style.opacity = 1;
+        }, 300);
+      }
+
+      // Observer para animações
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('active');
+        });
+      }, {
+        threshold: 0.1
+      });
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+      // Fechar modal no Esc
+      document.addEventListener('keydown', (e) => {
+        if (e.key === "Escape") closeModal();
+      });
+    </script>
+
+  </body>
+
+</html>
