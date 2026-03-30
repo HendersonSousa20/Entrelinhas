@@ -1,9 +1,3 @@
-Para um README de nível profissional no GitHub (especialmente se você pretende mostrar este projeto em um portfólio de desenvolvedor ou para um cliente), precisamos focar na **documentação técnica**, **arquitetura**, **performance** e **visual**.
-
-Aqui está uma versão premium, estruturada para impressionar tanto recrutadores quanto pacientes:
-
------
-
 # 🌿 Entrelinhas | Psicologia & Presença
 
 Uma *landing page* de alta conversão para clínica de psicologia, focada em **Psicologia Existencial** e **Fenomenologia**. O design foi concebido para transmitir calma, utilizando princípios de minimalismo orgânico e micro-interações que respeitam o tempo do usuário.
